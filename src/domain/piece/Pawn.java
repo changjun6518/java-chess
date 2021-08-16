@@ -1,12 +1,12 @@
 package domain.piece;
 
-public abstract class Piece {
-    String color;
-    String position;
+public class Pawn extends Piece {
+
+    @Override
     public void move(String source, String target) {
 
     }
-
+    @Override
     public void checkCanMove(String source, String target) {
 
     }
