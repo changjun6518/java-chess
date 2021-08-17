@@ -1,13 +1,17 @@
 package domain.piece;
 
+import domain.board.Position;
+
 public abstract class Piece {
-    String color;
-    String position;
-    public void move(String source, String target) {
+    protected PieceType pieceType;
+    protected ColorCase color;
+    protected Position position;
+    protected char representation;
 
-    }
-
-    public void checkCanMove(String source, String target) {
-
+    public Piece(PieceType pieceType, ColorCase color, Position position, char representation) {
+        this.pieceType = pieceType;
+        this.color = color;
+        this.position = position;
+        this.representation = representation;
     }
 }

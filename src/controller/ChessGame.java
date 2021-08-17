@@ -1,5 +1,6 @@
 package controller;
 
+import domain.piece.ColorCase;
 import domain.player.Player;
 
 import java.util.Scanner;
@@ -12,7 +13,11 @@ public class ChessGame {
         System.out.println("두 Player의 이름을 입력하시오!");
         String playerNameA = scanner.next();
         String playerNameB = scanner.next();
-        black = new Player(playerNameA, "black");
-        white = new Player(playerNameB, "white");
+        black = new Player(playerNameA, ColorCase.BLACK);
+        white = new Player(playerNameB, ColorCase.WHITE);
+    }
+
+    public void setBoard() {
+
     }
 }
