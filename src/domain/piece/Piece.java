@@ -14,4 +14,12 @@ public abstract class Piece {
         this.position = position;
         this.representation = representation;
     }
+
+    public Position getPosition() {
+        return position;
+    }
+
+    public char getRepresentation() {
+        return representation;
+    }
 }
