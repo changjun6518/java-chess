@@ -30,7 +30,7 @@
     - [x] 체스판 현재 상황 보여주기
     - [x] 빈칸 처리하기
 - [ ] 체스
-    - [ ] move source_위치 target_위치로 움직이기
+    - [x] move source_위치 target_위치로 움직이기
     - [x] Pawn, Rook, Knight, Bishop, Queen, King 기물의 행마법에 따라 움직이기
     - [ ] 나의 기물이 상대 기물에 갈 수 있으면 상대 기물을 잡아내기
     - [ ] king을 잡아내면 게임 끝내기
