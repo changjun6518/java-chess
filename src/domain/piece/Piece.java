@@ -22,4 +22,7 @@ public abstract class Piece {
     public char getRepresentation() {
         return representation;
     }
+
+    public abstract Piece moveTo(Position toPosition);
+
 }

@@ -8,6 +8,11 @@ public class Rook extends Piece {
         super(pieceType, color, position, representation);
     }
 
+    @Override
+    public Piece moveTo(Position toPosition) {
+        return new Rook(pieceType, color, toPosition, representation);
+    }
+
     public static Rook createWhite(Position position) {
         return new Rook(PieceType.ROOK, ColorCase.WHITE, position, 'r');
     }

@@ -7,6 +7,11 @@ public class Blank extends Piece {
         super(pieceType, color, position, representation);
     }
 
+    @Override
+    public Piece moveTo(Position toPosition) {
+        return new Blank(pieceType, color, toPosition, representation);
+    }
+
     public static Blank createBlank(Position position) {
         return new Blank(PieceType.BLANK, ColorCase.BLACK, position, '.');
     }

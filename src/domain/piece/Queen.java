@@ -7,6 +7,11 @@ public class Queen extends Piece{
         super(pieceType, color, position, representation);
     }
 
+    @Override
+    public Piece moveTo(Position toPosition) {
+        return new Queen(pieceType, color, toPosition, representation);
+    }
+
     public static Queen createWhite(Position position) {
         return new Queen(PieceType.QUEEN, ColorCase.WHITE, position, 'q');
     }

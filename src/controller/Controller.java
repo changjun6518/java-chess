@@ -2,22 +2,29 @@ package controller;
 
 import domain.board.Board;
 import domain.board.BoardFactory;
-import domain.piece.ColorCase;
-import domain.player.Player;
 
 import java.util.Scanner;
 
 public class Controller {
 
-    public static void readyPlayers(Scanner scanner) {
-        System.out.println("두 Player의 이름을 입력하시오!");
-        String playerNameA = scanner.next();
-        String playerNameB = scanner.next();
-    }
+    static Board board;
 
     public static void setBoard() {
         BoardFactory.init();
-        Board board = BoardFactory.createBoard();
+        board = BoardFactory.createBoard();
         board.showBoard();
     }
+
+    public static void showBoard() {
+        board.showBoard();
+    }
+    public static void move(Scanner scanner) {
+        System.out.println("이동 할래?");
+        String moveCommand = scanner.next();
+        String source = scanner.next();
+        String target = scanner.next();
+        board.move(source, target);
+
+    }
+
 }

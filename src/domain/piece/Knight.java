@@ -6,6 +6,12 @@ public class Knight extends Piece{
     public Knight(PieceType pieceType, ColorCase color, Position position, char representation) {
         super(pieceType, color, position, representation);
     }
+
+    @Override
+    public Piece moveTo(Position toPosition) {
+        return new Knight(pieceType, color, toPosition, representation);
+    }
+
     public static Knight createWhite(Position position) {
         return new Knight(PieceType.KNIGHT, ColorCase.WHITE, position, 'n');
     }

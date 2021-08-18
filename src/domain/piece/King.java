@@ -8,6 +8,11 @@ public class King extends Piece {
         super(pieceType, color, position, representation);
     }
 
+    @Override
+    public Piece moveTo(Position toPosition) {
+        return new King(pieceType, color, toPosition, representation);
+    }
+
     public static King createWhite(Position position) {
         return new King(PieceType.KING, ColorCase.WHITE, position, 'k');
     }
