@@ -13,6 +13,6 @@ public class Blank extends Piece {
     }
 
     public static Blank createBlank(Position position) {
-        return new Blank(PieceType.BLANK, ColorCase.BLACK, position, '.');
+        return new Blank(PieceType.BLANK, ColorCase.BLANK, position, '.');
     }
 }

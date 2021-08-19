@@ -1,6 +1,7 @@
 package domain.board;
 
 import domain.piece.Blank;
+import domain.piece.ColorCase;
 import domain.piece.Piece;
 
 import java.util.ArrayList;
@@ -23,16 +24,21 @@ public class Board {
     }
 
     // move b2 b4
-    public void move(String source, String target) {
+    public void move(String source, String target, ColorCase currentTurn) {
         Piece sourcePiece = findPieceByPosition(Position.of(source));
         Piece targetPiece = findPieceByPosition(Position.of(target));
 
-        // 빈칸인지
-        // 순서가 맞는지
-        // 갈수 있는지
-        board.set(boardIndexOf(targetPiece.getPosition()), sourcePiece.moveTo(targetPiece.getPosition()));
-        board.set(boardIndexOf(sourcePiece.getPosition()), Blank.createBlank(sourcePiece.getPosition()));
+        if (sourcePiece.isBlank()) {
+            throw new IllegalArgumentException("빈 칸은 이동할 수 없습니다!");
+        }
+        if (!sourcePiece.isSameColor(currentTurn)) {
+            throw new IllegalArgumentException("순서가 아닙니다!");
+        }
 
+        if (sourcePiece.isMovable(this, targetPiece)) {
+            board.set(boardIndexOf(targetPiece.getPosition()), sourcePiece.moveTo(targetPiece.getPosition()));
+            board.set(boardIndexOf(sourcePiece.getPosition()), Blank.createBlank(sourcePiece.getPosition()));
+        }
     }
 
     public Piece findPieceByPosition(Position position) {

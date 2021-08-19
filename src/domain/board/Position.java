@@ -2,6 +2,8 @@ package domain.board;
 
 import domain.util.Direction;
 
+import java.util.Objects;
+
 public class Position {
     private static final int ASCII_GAP = 96;
     private static final int END_INDEX = 8;
@@ -20,7 +22,6 @@ public class Position {
     }
 
     public static Position of(String position) {
-        System.out.println(position.charAt(0) - ASCII_GAP);
         return of(String.valueOf(position.charAt(0) - ASCII_GAP),
                 String.valueOf(position.charAt(1)));
     }
@@ -40,5 +41,17 @@ public class Position {
 
     public int getRow() {
         return row;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Position position = (Position) o;
+        return Objects.equals(col, position.col) && Objects.equals(row, position.row);
     }
 }

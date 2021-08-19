@@ -1,5 +1,6 @@
 package domain.piece;
 
+import domain.board.Board;
 import domain.board.Position;
 import domain.util.Direction;
 
@@ -37,6 +38,13 @@ public abstract class Piece {
                 position.getRow() + direction.getRow());
     }
 
+    public boolean isMovable(final Board board, final Piece targetPiece) {
+        if (pieceType.possiblePositions(board, this).contains(targetPiece.getPosition())) {
+            return true;
+        }
+        throw new IllegalArgumentException("해당 포지션으로 이동할 수 없습니다!");
+    }
+
     public boolean isBlank() {
         return this instanceof Blank;
     }
@@ -49,5 +57,9 @@ public abstract class Piece {
 
     public boolean isSameColor(Piece piece){
         return color.isSame(piece.color);
+    }
+
+    public boolean isSameColor(ColorCase color){
+        return this.color == color;
     }
 }

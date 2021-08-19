@@ -1,5 +1,7 @@
 package domain.piece;
 
+import domain.board.Board;
+import domain.board.Position;
 import domain.strategy.*;
 import domain.util.Direction;
 import domain.util.Directions;
@@ -11,8 +13,11 @@ public enum PieceType {
     FIRST_WHITE_PAWN(new PawnMoveStrategy(), Directions.FIRST_WHITE_PAWN_DIRECTION, 1),
     WHITE_PAWN(new PawnMoveStrategy(), Directions.WHITE_PAWN_DIRECTION, 1),
     BLACK_PAWN(new PawnMoveStrategy(), Directions.BLACK_PAWN_DIRECTION, 1),
+
+
     KNIGHT(new SingleMoveStrategy(), Directions.KNIGHT_DIRECTION, 2.5),
     KING(new SingleMoveStrategy(), Directions.KING_DIRECTION, 0),
+
     ROOK(new MultipleMoveStrategy(), Directions.ROOK_DIRECTION, 5),
     BISHOP(new MultipleMoveStrategy(), Directions.BISHOP_DIRECTION, 3),
     QUEEN(new MultipleMoveStrategy(), Directions.QUEEN_DIRECTION, 9),
@@ -33,5 +38,9 @@ public enum PieceType {
 
     public List<Direction> directions() {
         return directions.directions();
+    }
+
+    public List<Position> possiblePositions(Board board, Piece piece) {
+        return moveStrategy.possiblePositions(board, piece);
     }
 }
