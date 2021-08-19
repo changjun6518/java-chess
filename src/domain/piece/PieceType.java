@@ -1,27 +1,37 @@
 package domain.piece;
 
+import domain.strategy.*;
 import domain.util.Direction;
 import domain.util.Directions;
 
+import java.util.List;
+
 public enum PieceType {
-    FIRST_BLACK_PAWN(Directions.FIRST_BLACK_PAWN_DIRECTION, 1),
-    FIRST_WHITE_PAWN(Directions.FIRST_WHITE_PAWN_DIRECTION, 1),
-    WHITE_PAWN(Directions.WHITE_PAWN_DIRECTION, 1),
-    BLACK_PAWN(Directions.BLACK_PAWN_DIRECTION, 1),
-    ROOK(Directions.ROOK_DIRECTION, 5),
-    BISHOP(Directions.BISHOP_DIRECTION, 3),
-    KNIGHT(Directions.KNIGHT_DIRECTION, 2.5),
-    QUEEN(Directions.QUEEN_DIRECTION, 9),
-    KING(Directions.KING_DIRECTION, 0),
-    BLANK(Directions.BLANK_DIRECTION, 0),
-    ;
+    FIRST_BLACK_PAWN(new PawnMoveStrategy(), Directions.FIRST_BLACK_PAWN_DIRECTION, 1),
+    FIRST_WHITE_PAWN(new PawnMoveStrategy(), Directions.FIRST_WHITE_PAWN_DIRECTION, 1),
+    WHITE_PAWN(new PawnMoveStrategy(), Directions.WHITE_PAWN_DIRECTION, 1),
+    BLACK_PAWN(new PawnMoveStrategy(), Directions.BLACK_PAWN_DIRECTION, 1),
+    KNIGHT(new SingleMoveStrategy(), Directions.KNIGHT_DIRECTION, 2.5),
+    KING(new SingleMoveStrategy(), Directions.KING_DIRECTION, 0),
+    ROOK(new MultipleMoveStrategy(), Directions.ROOK_DIRECTION, 5),
+    BISHOP(new MultipleMoveStrategy(), Directions.BISHOP_DIRECTION, 3),
+    QUEEN(new MultipleMoveStrategy(), Directions.QUEEN_DIRECTION, 9),
+
+    BLANK(new BlankStrategy(), Directions.BLANK_DIRECTION, 0);
 
 
+
+    private final MoveStrategy moveStrategy;
     private final Directions directions;
     private final double point;
 
-    PieceType(Directions directions, double point) {
+    PieceType(MoveStrategy moveStrategy, Directions directions, double point) {
+        this.moveStrategy = moveStrategy;
         this.directions = directions;
         this.point = point;
+    }
+
+    public List<Direction> directions() {
+        return directions.directions();
     }
 }

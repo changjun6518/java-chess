@@ -27,4 +27,8 @@ public enum Directions {
     Directions(List<Direction> directions) {
         this.directions = directions;
     }
+
+    public List<Direction> directions() {
+        return directions;
+    }
 }

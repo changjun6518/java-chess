@@ -1,5 +1,7 @@
 package domain.util;
 
+import java.util.Arrays;
+
 public enum Direction {
     NORTH(0, 1),
     SOUTH(0, -1),
@@ -19,12 +21,23 @@ public enum Direction {
     EAST_EAST_NORTH(2, 1),
     WEST_WEST_SOUTH(-2, -1),
     WEST_WEST_NORTH(-2, 1);
-
-    int row;
     int col;
+    int row;
 
-    Direction(int row, int col) {
+    Direction(int col, int row) {
         this.row = row;
         this.col = col;
+    }
+
+    public int getRow() {
+        return row;
+    }
+
+    public int getCol() {
+        return col;
+    }
+
+    public boolean isForwardDirection() {
+        return Arrays.asList(NORTH, NORTH_NORTH, SOUTH, SOUTH_SOUTH).contains(this);
     }
 }
