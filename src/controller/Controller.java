@@ -3,34 +3,54 @@ package controller;
 import domain.board.Board;
 import domain.board.BoardFactory;
 import domain.piece.ColorCase;
-
-import java.util.Scanner;
+import domain.util.Command;
+import domain.view.InputView;
+import domain.view.OutputView;
 
 public class Controller {
+    private static final int COMMAND_INDEX = 0;
+    private static final int SOURCE_POSITION_INDEX = 1;
+    private static final int TARGET_POSITION_INDEX = 2;
 
-    static Board board;
+    private Board board;
+    private String[] inputCommand;
+    public Controller() {
 
-    public static void setBoard() {
-        BoardFactory.init();
-        board = BoardFactory.createBoard();
-        board.showBoard();
     }
 
-    public static void showBoard() {
-        board.showBoard();
+    public void run() {
+        ColorCase currentTurn = ColorCase.WHITE;
+        Command command = Command.START;
+
+        while (!(command = inputCommandWithValidation()).isEnd()) {
+            if (command.isStart()) {
+                board = BoardFactory.createBoard();
+                board.showBoard();
+            }
+
+            if (command.isMove()) {
+                board.move(inputCommand[SOURCE_POSITION_INDEX], inputCommand[TARGET_POSITION_INDEX], currentTurn);
+                currentTurn = reverseTurn(currentTurn);
+                OutputView.printBoard(board.getBoard());
+            }
+        }
     }
-    public static void move(Scanner scanner) {
-        System.out.println("이동 할래?");
-//        String moveCommand = scanner.next();
 
-        String source = scanner.next();
-        String target = scanner.next();
-        board.move(source, target, ColorCase.BLACK);
-        String source2 = scanner.next();
-        String target2 = scanner.next();
-        board.move(source2, target2, ColorCase.WHITE);
+    private ColorCase reverseTurn(ColorCase color) {
+        if (color == ColorCase.WHITE) {
+            return ColorCase.BLACK;
+        }
+        return ColorCase.WHITE;
+    }
 
-
+    private Command inputCommandWithValidation() {
+        try {
+            inputCommand = InputView.inputCommand();
+            return Command.of(inputCommand[COMMAND_INDEX]);
+        } catch (IllegalArgumentException e) {
+            OutputView.printExceptionMessage(e.getMessage());
+            return inputCommandWithValidation();
+        }
     }
 
 }

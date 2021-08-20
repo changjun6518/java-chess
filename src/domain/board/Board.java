@@ -52,4 +52,8 @@ public class Board {
     public int boardIndexOf(Position position) {
         return getBoardIndex(position.getCol(), position.getRow());
     }
+
+    public List<Piece> getBoard() {
+        return board;
+    }
 }

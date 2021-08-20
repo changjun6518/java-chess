@@ -11,10 +11,15 @@ public class BoardFactory {
     private static final int BLANK_START_ROW = 3;
     private static final int BLANK_END_ROW = 6;
 
-    public static void init() {
-        setupWhitePiece();
-        setupBlankPiece();
-        setupBlackPiece();
+//    public static void init() {
+//        setupWhitePiece();
+//        setupBlankPiece();
+//        setupBlackPiece();
+//    }
+    static {
+    setupWhitePiece();
+    setupBlankPiece();
+    setupBlackPiece();
     }
 
 
