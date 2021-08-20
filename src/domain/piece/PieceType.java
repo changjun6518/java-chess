@@ -43,4 +43,8 @@ public enum PieceType {
     public List<Position> possiblePositions(Board board, Piece piece) {
         return moveStrategy.possiblePositions(board, piece);
     }
+
+    public double getPoint() {
+        return point;
+    }
 }

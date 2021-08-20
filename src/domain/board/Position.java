@@ -6,8 +6,8 @@ import java.util.Objects;
 
 public class Position {
     private static final int ASCII_GAP = 96;
-    private static final int END_INDEX = 8;
-    private static final int START_INDEX = 1;
+    public static final int END_INDEX = 8;
+    public static final int START_INDEX = 1;
     public static final int ROW_SIZE = 8;
 
     public int col;

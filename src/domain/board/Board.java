@@ -9,6 +9,7 @@ import java.util.List;
 
 public class Board {
     private final List<Piece> board;
+    private boolean isFinished = false;
 
     public Board(List<Piece> board) {
         this.board = board;
@@ -39,10 +40,24 @@ public class Board {
             board.set(boardIndexOf(targetPiece.getPosition()), sourcePiece.moveTo(targetPiece.getPosition()));
             board.set(boardIndexOf(sourcePiece.getPosition()), Blank.createBlank(sourcePiece.getPosition()));
         }
+        changeFlagWhenKingCaptured(targetPiece);
+    }
+
+    public void changeFlagWhenKingCaptured(Piece targetPiece) {
+        if (targetPiece.isKing()) {
+            isFinished = true;
+        }
+    }
+
+    public boolean isFinished() {
+        return isFinished;
     }
 
     public Piece findPieceByPosition(Position position) {
         return board.get(getBoardIndex(position.getCol(), position.getRow()));
+    }
+    public Piece findPieceByPosition(int index) {
+        return board.get(index);
     }
 
     public int getBoardIndex(int col, int row) {

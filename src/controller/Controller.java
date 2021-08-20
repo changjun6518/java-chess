@@ -2,6 +2,7 @@ package controller;
 
 import domain.board.Board;
 import domain.board.BoardFactory;
+import domain.calculator.Calculator;
 import domain.piece.ColorCase;
 import domain.util.Command;
 import domain.view.InputView;
@@ -13,14 +14,16 @@ public class Controller {
     private static final int TARGET_POSITION_INDEX = 2;
 
     private Board board;
+    private Calculator calculator;
     private String[] inputCommand;
     public Controller() {
-
+        calculator = new Calculator();
     }
 
     public void run() {
+        OutputView.printInputStartGuideMessage();
         ColorCase currentTurn = ColorCase.WHITE;
-        Command command = Command.START;
+        Command command;
 
         while (!(command = inputCommandWithValidation()).isEnd()) {
             if (command.isStart()) {
@@ -32,6 +35,16 @@ public class Controller {
                 board.move(inputCommand[SOURCE_POSITION_INDEX], inputCommand[TARGET_POSITION_INDEX], currentTurn);
                 currentTurn = reverseTurn(currentTurn);
                 OutputView.printBoard(board.getBoard());
+            }
+
+            if (command.isStatus()) {
+                OutputView.printPoint(calculator.calculatePoint(board, ColorCase.WHITE),
+                        calculator.calculatePoint(board, ColorCase.BLACK));
+            }
+
+            if (board.isFinished()) {
+                OutputView.printGameFinish();
+                break;
             }
         }
     }

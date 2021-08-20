@@ -28,6 +28,12 @@ public class OutputView {
         }
     }
 
+    public static void printPoint(double whitePoint, double blackPoint) {
+        System.out.println(String.format("흰색 점수는 %.1f, 검은색 점수는 %.1f 입니다!", whitePoint, blackPoint));
+    }
+    public static void printGameFinish() {
+        System.out.println("왕이 잡혀서 게임이 종료되었습니다!");
+    }
     public static void printExceptionMessage(String message) {
         System.out.println(message);
     }

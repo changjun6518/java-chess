@@ -23,6 +23,10 @@ public abstract class Piece {
         return position;
     }
 
+    public double getPoint() {
+        return pieceType.getPoint();
+    }
+
     public char getRepresentation() {
         return representation;
     }
@@ -48,7 +52,13 @@ public abstract class Piece {
     public boolean isBlank() {
         return this instanceof Blank;
     }
+    public boolean isKing() {
+        return this instanceof King;
+    }
 
+    public boolean isPawn() {
+        return this instanceof Pawn;
+    }
 
     public boolean isOtherPiece(Piece piece) {
         return color.isNotSame(piece.color);
