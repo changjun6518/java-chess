@@ -38,7 +38,7 @@ public abstract class Piece {
     }
 
     public boolean isNextPositionValid(Direction direction){
-        return Position.isInboardRange(position.getCol() + direction.getCol(),
+        return Position.isInBoardRange(position.getCol() + direction.getCol(),
                 position.getRow() + direction.getRow());
     }
 
