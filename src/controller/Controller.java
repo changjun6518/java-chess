@@ -29,7 +29,7 @@ public class Controller {
         while (!(command = inputCommandWithValidation()).isEnd()) {
             if (command.isStart()) {
                 board = BoardFactory.createBoard();
-                board.showBoard();
+                OutputView.printBoard(board.getBoard());
             }
             try {
                 if (command.isMove()) {
@@ -37,7 +37,7 @@ public class Controller {
                     currentTurn = reverseTurn(currentTurn);
                     OutputView.printBoard(board.getBoard());
                 }
-            } catch (InvalidPositionException e) {
+            } catch (IllegalArgumentException e) {
                 OutputView.printExceptionMessage(e.getMessage());
             }
 

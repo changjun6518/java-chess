@@ -15,15 +15,6 @@ public class Board {
         this.board = board;
     }
 
-    public void showBoard() {
-        for (int i = 8; i >=1; i--) {
-            for (int j = 1; j <= 8; j++) {
-                System.out.print(board.get((i-1)*8+j-1).getRepresentation());
-            }
-            System.out.println();
-        }
-    }
-
     // move b2 b4
     public void move(String source, String target, ColorCase currentTurn) {
         Piece sourcePiece = findPieceByPosition(Position.of(source));

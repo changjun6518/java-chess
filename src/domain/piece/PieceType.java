@@ -44,6 +44,13 @@ public enum PieceType {
         return moveStrategy.possiblePositions(board, piece);
     }
 
+    public PieceType notFirstStepPawn() {
+        if (this == FIRST_WHITE_PAWN) {
+            return WHITE_PAWN;
+        }
+        return BLACK_PAWN;
+    }
+
     public double getPoint() {
         return point;
     }

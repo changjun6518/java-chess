@@ -9,7 +9,7 @@ public class Pawn extends Piece {
 
     @Override
     public Piece moveTo(Position toPosition) {
-        return new Pawn(pieceType, color, toPosition, representation);
+        return new Pawn(pieceType.notFirstStepPawn(), color, toPosition, representation);
     }
 
     public static Pawn createWhite(Position position) {
