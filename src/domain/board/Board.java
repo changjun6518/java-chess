@@ -4,7 +4,6 @@ import domain.piece.Blank;
 import domain.piece.ColorCase;
 import domain.piece.Piece;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Board {

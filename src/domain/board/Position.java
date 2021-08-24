@@ -27,8 +27,6 @@ public class Position {
 
     public static Position of(int col, int row) {
         if (!isInBoardRange(col, row)) {
-            System.out.println("col : " + col );
-            System.out.println("raw : " + row );
             throw new InvalidPositionException((char) (col + ASCII_GAP), (char) (row + NUMBER_GAP));
         }
         return new Position(col, row);
